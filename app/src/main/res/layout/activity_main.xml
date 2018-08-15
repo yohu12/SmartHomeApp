@@ -25,24 +25,25 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@{weather.city}"
-                android:textSize="48sp" />
+                android:textSize="@dimen/fontSize" />
 
         <LinearLayout
             android:layout_width="240dp"
             android:layout_height="match_parent"
             android:layout_gravity="end"
             android:layout_margin="50dp"
-            android:orientation="vertical">
-            <ImageView
+            android:orientation="horizontal">
+            <!--<ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:src=""/>-->
             <TextView
                 style="@style/MirrorText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@{weather.weather}"
-                android:textSize="48sp" />
+                android:textSize="@dimen/fontSize" />
         </LinearLayout>
 
 
@@ -52,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@{weather.temperature}"
-                android:textSize="48sp" />
+                android:textSize="@dimen/fontSize" />
         </LinearLayout>
 
         <TextView
@@ -61,6 +62,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@{weather.currentTemperature}"
-            android:textSize="48sp"/>
+            android:textSize="@dimen/fontSize"/>
     </FrameLayout>
 </layout>
