@@ -2,13 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yohu.smarthomeapp">
 
-    <application>
-        <uses-library android:name="com.google.android.things" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
-        <activity android:name=".MainActivity" android:screenOrientation="landscape">
+    <application android:theme="@android:style/Theme.NoTitleBar">
+       <!-- <uses-library android:name="com.google.android.things" />-->
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
