@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <variable
             name="weather"
             type="com.yohu.smarthomeapp.model.Weather" />
@@ -11,6 +12,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black">
+
+        <com.yohu.smarthomeapp.view.DrawView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="240dp"
@@ -27,24 +32,26 @@
                 android:text="@{weather.city}"
                 android:textSize="@dimen/fontSize" />
 
-        <LinearLayout
-            android:layout_width="240dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="end"
-            android:layout_margin="50dp"
-            android:orientation="horizontal">
-            <!--<ImageView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src=""/>-->
-            <TextView
-                style="@style/MirrorText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@{weather.weather}"
-                android:textSize="@dimen/fontSize" />
-        </LinearLayout>
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <!-- <ImageView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:src="" />-->
+
+                <TextView
+                    style="@style/MirrorText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@{weather.weather}"
+                    android:textSize="@dimen/fontSize" />
+            </LinearLayout>
 
 
             <TextView
@@ -54,14 +61,16 @@
                 android:layout_gravity="center"
                 android:text="@{weather.temperature}"
                 android:textSize="@dimen/fontSize" />
+
+            <TextView
+                style="@style/MirrorText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:text="@{weather.currentTemperature}"
+                android:textSize="@dimen/fontSize" />
         </LinearLayout>
 
-        <TextView
-            style="@style/MirrorText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@{weather.currentTemperature}"
-            android:textSize="@dimen/fontSize"/>
     </FrameLayout>
 </layout>

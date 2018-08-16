@@ -68,7 +68,7 @@ public class MainActivity extends Activity {
                     weather.setDressingAdvice(today.getDressing_advice());
                     weather.setTemperature(today.getTemperature());
                     weather.setWeather(today.getWeather());
-                    weather.setCurrentTemperature("当前：" + sk.getTemp());
+                    weather.setCurrentTemperature("当前温度：" + sk.getTemp()+"℃");
                     binding.setWeather(weather);
                 }
 
