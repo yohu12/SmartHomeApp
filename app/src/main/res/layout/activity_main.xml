@@ -6,6 +6,10 @@
         <variable
             name="weather"
             type="com.yohu.smarthomeapp.model.Weather" />
+
+        <variable
+            name="str"
+            type="String" />
     </data>
 
     <FrameLayout

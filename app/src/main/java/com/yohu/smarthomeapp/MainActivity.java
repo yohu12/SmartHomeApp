@@ -1,6 +1,7 @@
 package com.yohu.smarthomeapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 
@@ -12,6 +13,7 @@ import com.yohu.smarthomeapp.http.response.Sk;
 import com.yohu.smarthomeapp.http.response.Today;
 import com.yohu.smarthomeapp.http.response.WeatherResp;
 import com.yohu.smarthomeapp.model.Weather;
+import com.yohu.smarthomeapp.services.RabbitMqService;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -43,7 +45,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        Intent startIntent = new Intent(this, RabbitMqService.class);
 
+        startService(startIntent);
     }
 
     @Override
@@ -68,7 +72,7 @@ public class MainActivity extends Activity {
                     weather.setDressingAdvice(today.getDressing_advice());
                     weather.setTemperature(today.getTemperature());
                     weather.setWeather(today.getWeather());
-                    weather.setCurrentTemperature("当前温度：" + sk.getTemp()+"℃");
+                    weather.setCurrentTemperature("当前温度：" + sk.getTemp() + "℃");
                     binding.setWeather(weather);
                 }
 
