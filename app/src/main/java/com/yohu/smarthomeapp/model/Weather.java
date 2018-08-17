@@ -6,6 +6,7 @@ public class Weather {
     private String weather;
     private String dressingAdvice;
     private String currentTemperature;
+    private String image;
 
     public String getCity() {
         return city;
@@ -45,5 +46,13 @@ public class Weather {
 
     public void setCurrentTemperature(String currentTemperature) {
         this.currentTemperature = currentTemperature;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

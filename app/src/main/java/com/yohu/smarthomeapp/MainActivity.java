@@ -82,6 +82,30 @@ public class MainActivity extends Activity {
                     weather.setTemperature(today.getTemperature());
                     weather.setWeather(today.getWeather());
                     weather.setCurrentTemperature("当前温度：" + sk.getTemp() + "℃");
+                    switch (today.getWeather_id().getFa()) {
+                        case "00":
+                            weather.setImage("sun");
+                            break;
+                        case "01":
+                            weather.setImage("cloud");
+                            break;
+                        case "02":
+                            weather.setImage("overcast");
+                        case "03":
+                        case "04":
+                        case "05":
+                        case "06":
+                        case "07":
+                        case "08":
+                        case "09":
+                        case "10":
+                        case "11":
+                        case "12":
+                        case "13":
+                            weather.setImage("rain");
+                            break;
+                    }
+
                     binding.setWeather(weather);
                 }
 
