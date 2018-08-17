@@ -25,6 +25,7 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Calendar;
 
 /**
  * Skeleton of an Android Things activity.
@@ -57,6 +58,7 @@ public class MainActivity extends Activity {
 
         startService(startIntent);
         EventBus.getDefault().register(this);
+
     }
 
     @Override
