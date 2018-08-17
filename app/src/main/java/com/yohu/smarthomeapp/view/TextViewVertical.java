@@ -10,8 +10,6 @@ package com.yohu.smarthomeapp.view;
  **************************/
 
 import android.content.Context;
-import android.databinding.BindingAdapter;
-import android.databinding.adapters.TextViewBindingAdapter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -143,7 +141,7 @@ public class TextViewVertical extends View {
     }
 
     private void draw(Canvas canvas, String thetext) {
-        Log.v("TextViewVertical", "draw");
+        Log.v("TextViewVertical", "drawable");
         char ch;
         mTextPosy = 0;//初始化y坐标
         mTextPosx = mTextWidth - mLineWidth;//初始化x坐标

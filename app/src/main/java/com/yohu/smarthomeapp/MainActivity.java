@@ -1,12 +1,16 @@
 package com.yohu.smarthomeapp;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 
 import com.google.gson.Gson;
 import com.yohu.smarthomeapp.databinding.ActivityMainBinding;
+import com.yohu.smarthomeapp.fragment.ContentFragment;
+import com.yohu.smarthomeapp.fragment.ImageViewFragment;
 import com.yohu.smarthomeapp.http.HttpUtil;
 import com.yohu.smarthomeapp.http.inf.IResponse;
 import com.yohu.smarthomeapp.http.response.Sk;
@@ -14,6 +18,10 @@ import com.yohu.smarthomeapp.http.response.Today;
 import com.yohu.smarthomeapp.http.response.WeatherResp;
 import com.yohu.smarthomeapp.model.Weather;
 import com.yohu.smarthomeapp.services.RabbitMqService;
+import com.yohu.smarthomeapp.services.message.RabbitMqMessage;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -48,6 +56,7 @@ public class MainActivity extends Activity {
         Intent startIntent = new Intent(this, RabbitMqService.class);
 
         startService(startIntent);
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -83,5 +92,30 @@ public class MainActivity extends Activity {
 
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onRabbitMqEvent(RabbitMqMessage rabbitMqMessage) {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        switch (rabbitMqMessage.getMsgType()) {
+            case 1:
+                ContentFragment fragment = new ContentFragment();
+                transaction.replace(R.id.main_content, fragment);
+                transaction.commit();
+                break;
+            case 2:
+                ImageViewFragment imageViewFragment = new ImageViewFragment();
+                transaction.replace(R.id.main_content, imageViewFragment);
+                transaction.commit();
+                break;
+        }
+
     }
 }

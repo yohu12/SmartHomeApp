@@ -16,6 +16,8 @@ import com.yohu.smarthomeapp.base.Constance;
 import com.yohu.smarthomeapp.services.message.RabbitMqMessage;
 import com.yohu.smarthomeapp.utils.show.L;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
@@ -50,7 +52,7 @@ public class RabbitMqService extends Service {
             channel.basicQos(1);
 
             // 随机命名一个队列名称
-            String queueName = System.currentTimeMillis() + "queueNameCar";
+            String queueName = System.currentTimeMillis() + "smart_home_app";
             // 声明交换机类型
             channel.exchangeDeclare(Constance.MQ_EXCHANGE, "direct", true);
             // 声明队列（持久的、非独占的、连接断开后队列会自动删除）
@@ -69,9 +71,7 @@ public class RabbitMqService extends Service {
                     Gson gson = new Gson();
                     RabbitMqMessage rabbitMqMessage = gson.fromJson(message, RabbitMqMessage.class);
 
-                    if (rabbitMqMessage.getMsgType().equals(1)){
-
-                    }
+                    EventBus.getDefault().post(rabbitMqMessage);
                 }
             };
             channel.basicConsume(q.getQueue(), true, consumer);
