@@ -59,6 +59,12 @@ public class MainActivity extends Activity {
         startService(startIntent);
         EventBus.getDefault().register(this);
 
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        ImageViewFragment imageViewFragment = new ImageViewFragment();
+        transaction.replace(R.id.main_content, imageViewFragment);
+        transaction.commit();
+
     }
 
     @Override
