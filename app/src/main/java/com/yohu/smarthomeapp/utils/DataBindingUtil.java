@@ -4,6 +4,11 @@ import android.databinding.BindingAdapter;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
+
+import java.util.List;
 
 public class DataBindingUtil {
 
@@ -13,19 +18,41 @@ public class DataBindingUtil {
         if (sourceName == null) {
 //            view.setImageResource(R.mipmap.ic_launcher);
         } else {
-            int drawableId = view.getResources().getIdentifier(sourceName,"drawable",view.getContext().getPackageName());
+            int drawableId = view.getResources().getIdentifier(sourceName, "drawable", view.getContext().getPackageName());
             Glide.with(view.getContext()).load(drawableId).into(view);
         }
     }
+
     // 下载一个图片 设置到ImageView
     @BindingAdapter({"imageUrl"})
     public static void loadImage(ImageView view, String sourceName) {
         if (sourceName == null) {
 //            view.setImageResource(R.mipmap.ic_launcher);
         } else {
-            int drawableId = view.getResources().getIdentifier(sourceName,"drawable",view.getContext().getPackageName());
+            int drawableId = view.getResources().getIdentifier(sourceName, "drawable", view.getContext().getPackageName());
             Glide.with(view.getContext()).load(drawableId).into(view);
         }
     }
 
+    // 下载一个图片 SliderLayout
+    @BindingAdapter({"loadImageSliderSource"})
+    public static void loadImageSliderSource(SliderLayout sliderLayout, List<Integer> usrList) {
+        for (Integer url : usrList) {
+            TextSliderView customSliderView = new TextSliderView(sliderLayout.getContext());
+            customSliderView
+                    .image(url)
+                    .setScaleType(BaseSliderView.ScaleType.Fit);
+            sliderLayout.addSlider(customSliderView);
+        }
+
+    }
+
+    @BindingAdapter({"setTransform"})
+    public static void setTransform(SliderLayout sliderLayout, String transformerName) {
+        for (SliderLayout.Transformer t : SliderLayout.Transformer.values()) {
+            if (t.equals(transformerName)) {
+                sliderLayout.setPresetTransformer(t);
+            }
+        }
+    }
 }

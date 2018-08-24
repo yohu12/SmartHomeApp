@@ -1,23 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment.ImageViewFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.daimajia.slider.library.SliderLayout
-        android:id="@+id/slider"
-        android:layout_width="wrap_content"
-        android:layout_height="400dp"
-        custom:auto_cycle="true"
-        custom:indicator_visibility="visible"
-        custom:pager_animation="Accordion"
-        custom:pager_animation_span="1100" />
+    <data>
+        <variable
+            name="transform"
+            type="String"/>
+        <variable
+            name="list"
+            type="java.util.ArrayList&lt;Integer&gt;" />
+    </data>
 
-    <com.daimajia.slider.library.Indicators.PagerIndicator
-        android:id="@+id/ind_pager"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center" />
-</FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragment.ImageViewFragment">
+
+        <com.daimajia.slider.library.SliderLayout
+            android:id="@+id/slider"
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            custom:auto_cycle="true"
+            app:loadImageSliderSource="@{list}"
+            custom:indicator_visibility="invisible"
+            app:setTransform="@{transform}"
+            custom:pager_animation_span="1100" />
+
+        <!--<com.daimajia.slider.library.Indicators.PagerIndicator
+            android:id="@+id/ind_pager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center" />-->
+    </FrameLayout>
+</layout>
