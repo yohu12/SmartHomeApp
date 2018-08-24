@@ -10,7 +10,7 @@
             type="String"/>
         <variable
             name="list"
-            type="java.util.ArrayList&lt;Integer&gt;" />
+            type="java.util.ArrayList&lt;String&gt;" />
     </data>
 
     <FrameLayout
@@ -21,17 +21,17 @@
         <com.daimajia.slider.library.SliderLayout
             android:id="@+id/slider"
             android:layout_width="wrap_content"
-            android:layout_height="400dp"
+            android:layout_height="wrap_content"
             custom:auto_cycle="true"
-            app:loadImageSliderSource="@{list}"
+            app:loadImageSliderSourceString="@{list}"
             custom:indicator_visibility="invisible"
             app:setTransform="@{transform}"
-            custom:pager_animation_span="1100" />
+            custom:pager_animation_span="3000" />
 
-        <!--<com.daimajia.slider.library.Indicators.PagerIndicator
+        <com.daimajia.slider.library.Indicators.PagerIndicator
             android:id="@+id/ind_pager"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center" />-->
+            android:gravity="center" />
     </FrameLayout>
 </layout>

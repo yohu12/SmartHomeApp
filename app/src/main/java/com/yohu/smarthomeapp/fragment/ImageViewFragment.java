@@ -12,6 +12,7 @@ import com.yohu.smarthomeapp.R;
 import com.yohu.smarthomeapp.databinding.FragmentImageViewBinding;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 /**
@@ -19,9 +20,8 @@ import java.util.ArrayList;
  */
 public class ImageViewFragment extends Fragment {
 
-//    private SliderLayout sliderLayout;
-//    private PagerIndicator indicator;
-    private ArrayList<Integer> imgurl = new ArrayList<>();
+    private ArrayList<String> imgurl = new ArrayList<>();
+    private FragmentImageViewBinding binding;
 
     public ImageViewFragment() {
     }
@@ -30,20 +30,18 @@ public class ImageViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        imgurl.add(R.drawable.cloud);
-        imgurl.add(R.drawable.f);
-        imgurl.add(R.drawable.rain);
-        imgurl.add(R.drawable.overcast);
-        FragmentImageViewBinding binding = DataBindingUtil.inflate(
+        for (int i=0;i<20;i++) {
+            imgurl.add("https://picsum.photos/1600/900/?image=" + new Random().nextInt(1000));
+        }
+        binding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_image_view, container, false);
         View view = binding.getRoot();
         //here data must be an instance of the class MarsDataProvider
-        binding.setList(imgurl);
-        binding.setTransform("ZoomIn");
         init();
-
+        binding.setList(imgurl);
         return view;
     }
+
     private void init() {
 
 //        sliderLayout.setPresetTransformer(1);
